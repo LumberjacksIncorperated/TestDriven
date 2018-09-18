@@ -5,13 +5,23 @@
 
 NeuralNetwork createNeuralNetworkWithNueronsPerLayerNumberOfLayersAndInputVectorSize(int nueronsPerLayer, int numberOfLayers, int sizeOfInputVector);
 NeuralValue** _createNetworkWeightsMatrixForNueronsPerLayerNumberOfLayersAndInputVectorSize(int nueronsPerLayer, int numberOfLayers, int sizeOfInputVector);
+//void forwardPropogateNeuralInputVectorThroughNeuralNetwork(NeuralValue* inputVector, NeuralNetwork neuralNetwork);
 
 int _test_createNetworkWeightsMatrixForNueronsPerLayerNumberOfLayersAndInputVectorSize(void);
 int _test_createNeuralNetworkWithNueronsPerLayerNumberOfLayersAndInputVectorSize(void);
 
+void _test_createAndRunTest(TEST_FUNCTION testFunction, char* testName, char* testDescription) {
+    TEST_RUN testToRun = CREATE_TEST(testFunction, testName, testDescription);
+    RUN_TEST(testToRun);
+}
+
+void test_module_neural_network() {
+  _test_createAndRunTest(_test_createNetworkWeightsMatrixForNueronsPerLayerNumberOfLayersAndInputVectorSize,"_createNetworkWeightsMatrixForNueronsPerLayerNumberOfLayersAndInputVectorSize", "none");
+  _test_createAndRunTest(_test_createNeuralNetworkWithNueronsPerLayerNumberOfLayersAndInputVectorSize, "createNeuralNetworkWithNueronsPerLayerNumberOfLayersAndInputVectorSize", "none");
+}
+
 int main(void) {
-    printf(": %d\n", _test_createNetworkWeightsMatrixForNueronsPerLayerNumberOfLayersAndInputVectorSize());
-    printf(": %d\n", _test_createNeuralNetworkWithNueronsPerLayerNumberOfLayersAndInputVectorSize());
+    test_module_neural_network();
 	return 0;
 }
 
@@ -48,6 +58,10 @@ NeuralValue** _createNetworkWeightsMatrixForNueronsPerLayerNumberOfLayersAndInpu
 	}
 	return newNeuralWeightMatrix;
 }
+
+//void forwardPropogateNeuralInputVectorThroughNeuralNetwork(NeuralValue* inputVector, NeuralNetwork neuralNetwork) {
+
+//}
 
 int _test_createNetworkWeightsMatrixForNueronsPerLayerNumberOfLayersAndInputVectorSize(void) {
 	int test_result = 1;
@@ -97,15 +111,38 @@ int _test_createNeuralNetworkWithNueronsPerLayerNumberOfLayersAndInputVectorSize
 	int test_result = 1;
 	NeuralNetwork newNeuralNetwork = createNeuralNetworkWithNueronsPerLayerNumberOfLayersAndInputVectorSize(5, 5, 5);
 	if (newNeuralNetwork != NULL) {
-		if(newNeuralNetwork->networkWeights != NULL) {
-			for(int columnIndex = 0; columnIndex < 5; columnIndex++) {
-				for(int valueIndex = 0; valueIndex < 5; valueIndex++) {
-					if(newNeuralNetwork->networkWeights[columnIndex] != NULL) {
-						if(newNeuralNetwork->networkWeights[columnIndex][valueIndex] != DEFAULT_NEURAL_VALUE) {
+		if(newNeuralNetwork->networkWeights != NULL) {		
+        	NeuralValue** networkWeights = newNeuralNetwork->networkWeights;
+			for(int layerIndex = 0; layerIndex < (newNeuralNetwork->numberOfLayers+1); layerIndex++) {
+				if(layerIndex == 0) {
+					for(int neuronIndex = 0; neuronIndex < newNeuralNetwork->sizeOfInputVector*newNeuralNetwork->neuronsPerLayer; neuronIndex++) {
+						if(networkWeights[layerIndex] != NULL) {
+							if(networkWeights[layerIndex][neuronIndex] != DEFAULT_NEURAL_VALUE) {
+								test_result = 0;
+							}
+						} else {
 							test_result = 0;
 						}
-					} else {
-						test_result = 0;
+					}
+				} else if(layerIndex == newNeuralNetwork->numberOfLayers) {
+					for(int neuronIndex = 0; neuronIndex < newNeuralNetwork->neuronsPerLayer; neuronIndex++) {
+						if(networkWeights[layerIndex] != NULL) {
+							if(networkWeights[layerIndex][neuronIndex] != DEFAULT_NEURAL_VALUE) {
+								test_result = 0;
+							}
+						} else {
+							test_result = 0;
+						}
+					}
+				} else {
+					for(int neuronIndex = 0; neuronIndex < newNeuralNetwork->neuronsPerLayer*newNeuralNetwork->neuronsPerLayer; neuronIndex++) {
+						if(networkWeights[layerIndex] != NULL) {
+							if(networkWeights[layerIndex][neuronIndex] != DEFAULT_NEURAL_VALUE) {
+								test_result = 0;
+							}
+						} else {
+							test_result = 0;
+						}
 					}
 				}
 			}

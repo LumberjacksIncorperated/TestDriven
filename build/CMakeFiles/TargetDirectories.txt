@@ -1,0 +1,14 @@
+/Users/i346794/Desktop/TestDriven/build/CMakeFiles/install/local.dir
+/Users/i346794/Desktop/TestDriven/build/CMakeFiles/rebuild_cache.dir
+/Users/i346794/Desktop/TestDriven/build/CMakeFiles/edit_cache.dir
+/Users/i346794/Desktop/TestDriven/build/CMakeFiles/install/strip.dir
+/Users/i346794/Desktop/TestDriven/build/CMakeFiles/neuralNetworkProject.dir
+/Users/i346794/Desktop/TestDriven/build/CMakeFiles/install.dir
+/Users/i346794/Desktop/TestDriven/build/CMakeFiles/list_install_components.dir
+/Users/i346794/Desktop/TestDriven/build/test_library/CMakeFiles/install/local.dir
+/Users/i346794/Desktop/TestDriven/build/test_library/CMakeFiles/install/strip.dir
+/Users/i346794/Desktop/TestDriven/build/test_library/CMakeFiles/install.dir
+/Users/i346794/Desktop/TestDriven/build/test_library/CMakeFiles/list_install_components.dir
+/Users/i346794/Desktop/TestDriven/build/test_library/CMakeFiles/rebuild_cache.dir
+/Users/i346794/Desktop/TestDriven/build/test_library/CMakeFiles/edit_cache.dir
+/Users/i346794/Desktop/TestDriven/build/test_library/CMakeFiles/test_library.dir

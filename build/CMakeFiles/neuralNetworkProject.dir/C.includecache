@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../test_library/test_library.h
+
+/Users/i346794/Desktop/TestDriven/NeuralNetwork.c
+stdlib.h
+-
+stdio.h
+-
+NeuralNetwork.h
+/Users/i346794/Desktop/TestDriven/NeuralNetwork.h
+test_library.h
+/Users/i346794/Desktop/TestDriven/test_library.h
+
+/Users/i346794/Desktop/TestDriven/NeuralNetwork.h
+
